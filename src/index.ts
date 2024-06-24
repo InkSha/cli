@@ -10,19 +10,8 @@ const program = new Command()
   .description(packageFile.description)
   .version(packageFile.version)
 
-
-
 program
   .command('init <project>')
-  .action(project => {
-    console.log(`you input project name is ${project}`)
-    initProject(project)
-  })
-
-program
-  .command('update <project>')
-  .action(project => {
-    console.log(`you need update project is ${project}`)
-  })
+  .action(project => initProject(project))
 
 program.parse()
