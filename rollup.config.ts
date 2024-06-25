@@ -7,6 +7,7 @@ import babel from '@rollup/plugin-babel'
 import copy from 'rollup-plugin-copy'
 import terser from '@rollup/plugin-terser'
 import { defineConfig } from 'rollup'
+import fs from 'node:fs'
 import pkg from './package.json' assert { type: 'json' }
 
 const plugins = [
@@ -24,7 +25,12 @@ const plugins = [
       {
         dest: ['dist'],
         src: ['src/assets/*', '!src/assets/*.ts'],
-        rename: (name, ext) => `assets/${name}.${ext}`,
+        rename: (name, ext) => {
+          if (fs.statSync(`src/assets/${name}`).isDirectory()) {
+            return `assets/${name}`
+          }
+          return `assets/${name}${ext}`
+        },
       },
     ],
     expandDirectories: false,

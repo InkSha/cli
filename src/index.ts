@@ -12,6 +12,8 @@ const program = new Command()
 
 program
   .command('init <project>')
-  .action(project => initProject(project))
+  .action(project => {
+    initProject(project)
+  })
 
 program.parse()
