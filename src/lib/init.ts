@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'url'
 import { packageTemplateList } from '@/config'
 import { CommandHandler } from '@/core/command'
+import { log } from '@/utils'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -30,6 +31,12 @@ export default function initProject (projectName: string) {
       fs.writeFileSync(file, JSON.stringify(pkg), 'utf-8')
     })
     .then(() => {
-      console.log(`${path.join(process.cwd(), projectName)} create success!`)
+      log.success(`项目 ${projectName} 创建成功!`)
+      log.info('-'.padEnd(120, '-'))
+      log.primary('你可以:')
+      log.primary(`使用命令 cd ${projectName} 切换到项目文件夹下`)
+      log.primary(`执行 npm install 安装项目依赖`)
+      log.primary('执行 npm run dev 在开发环境运行项目')
+      log.info('-'.padEnd(120, '-'))
     })
 }
