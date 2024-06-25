@@ -1,7 +1,7 @@
 import compressing from 'compressing'
 import path from 'node:path'
 import fs from 'node:fs'
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import { packageTemplateList } from '@/config'
 import { CommandHandler } from '@/core/command'
 import { log } from '@/utils'

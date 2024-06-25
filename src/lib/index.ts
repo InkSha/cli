@@ -1,5 +1,7 @@
 import initProject from './init'
+import testCommand from './test'
 
 export {
-  initProject
+  initProject,
+  testCommand
 }
