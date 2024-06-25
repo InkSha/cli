@@ -17,7 +17,6 @@
     // 编译所需库
     "lib": [
       "ESNext",
-      "DOM",
       "Decorators"
     ],
     "noImplicitAny": false,

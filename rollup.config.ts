@@ -10,7 +10,7 @@ import { defineConfig } from 'rollup'
 import pkg from './package.json' assert { type: 'json' }
 
 const plugins = [
-  resolve(),
+  resolve({ exportConditions: ['node'] }),
   commonjs(),
   json(),
   typescript(),
@@ -37,14 +37,8 @@ export default defineConfig({
   output: [
     {
       dir: './dist',
-      format: 'umd',
+      format: 'esm',
       entryFileNames: 'index.js',
-      name: pkg.name,
-    },
-    {
-      dir: './dist',
-      format: 'es',
-      entryFileNames: 'index.mjs',
       name: pkg.name,
     },
   ],
