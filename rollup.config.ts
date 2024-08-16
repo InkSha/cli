@@ -9,6 +9,7 @@ import copy from 'rollup-plugin-copy'
 import terser from '@rollup/plugin-terser'
 import { defineConfig } from 'rollup'
 import pkg from './package.json' assert { type: 'json' }
+import path from 'path'
 
 const dir = './dist'
 
@@ -39,7 +40,7 @@ export default defineConfig({
       entries: [
         {
           find: '@',
-          replacement: new URL('./src', import.meta.url).pathname,
+          replacement: path.join(process.cwd(), 'src'),
         },
       ],
     }),

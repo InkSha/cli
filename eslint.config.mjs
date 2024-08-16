@@ -6,6 +6,9 @@ import prettier from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 
 export default [
+  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs,ts}'],
     plugins: {
@@ -14,10 +17,13 @@ export default [
     },
     rules: {
       ...prettierConfig.rules,
-      'prettier/prettier': 'error',
+      'prettier/prettier': 'error'
     },
   },
-  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
+  {
+    rules: {
+      "no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-vars": "warn"
+    }
+  }
 ]

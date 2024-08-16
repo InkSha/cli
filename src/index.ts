@@ -1,52 +1,21 @@
-/**
- * @file src/index.ts
- * @descriptino entry file
- * @author InkSha<inksha@inksha.com>
- * @version 0.0.1
- * @license MIT
- * @createAt 2024-08-15
- * @modifyAt 2024-08-15
- */
+#!/usr/bin/env ts-node
 
 import './config/env'
+import { LoadCommand } from './commands/loader'
+import { Command } from 'commander'
+import { CreateSchema } from './schema/create'
+import { baseTemplate } from './schema/template'
+import pkg from '../package.json'
 
-/**
- * @class Example
- * @description Template Example Class
- *
- * @example
- * ```ts
- * const hello = new Example("Hello World!")
- *
- * hello.say()
- * ```
- */
-export class Example {
-  /**
-   * @param syntax need say syntax
-   */
-  constructor(
-    /**
-     * need say syntax
-     *
-     * @private
-     */
-    private readonly syntax: string,
-  ) {}
+const bootstrap = async () => {
+  const program = new Command()
+    .version(pkg.version, '-v, --version', 'Output the current version.')
+    .usage('<command> [options')
+    .helpOption('-h, --help', 'Output usage information.')
 
-  /**
-   * say syntax
-   *
-   * @public
-   */
-  public say() {
-    console.log(this.syntax, process.env)
-  }
+  LoadCommand.loadCommand(program)
 }
 
-/**
- * @constant
- */
-const hello = new Example('Hello World!')
+// bootstrap()
 
-hello.say()
+new CreateSchema(baseTemplate).create('tmp')

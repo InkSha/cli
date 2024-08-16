@@ -32,8 +32,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "tsc && cross-env NODE_ENV=development node ./dist/index.js",
-    "build": "typedoc --plugin typedoc-plugin-markdown && rollup -c rollup.config.ts --configPlugin typescript",
+    "dev": "cross-env NODE_ENV=development node --loader ts-node/esm src/index.ts",
+    "dev:watch": "cross-env NODE_ENV=development node --loader ts-node/esm src/index.ts",
+    "build": "rollup -c rollup.config.ts --configPlugin typescript && typedoc --plugin typedoc-plugin-markdown ",
+    "build:watch": "rollup -c rollup.config.ts --configPlugin typescript --watch",
     "prepare": "husky",
     "test": "jest",
     "tsc": "tsc",
@@ -57,6 +59,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@semantic-release/git": "^10.0.1",
+    "@types/figlet": "^1.5.8",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.3.0",
     "esbuild": "^0.23.0",
@@ -75,16 +78,23 @@
     "semantic-release": "^24.0.0",
     "ts-jest": "^29.2.4",
     "ts-node": "^10.9.2",
+    "tslib": "^2.6.3",
     "typedoc": "^0.26.5",
     "typedoc-plugin-markdown": "^4.2.4",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.1.0"
   },
   "dependencies": {
+    "@inquirer/prompts": "^5.3.8",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "compressing": "^1.10.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
+    "figlet": "^1.7.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "sharp": "^0.33.4"
   }
 }
